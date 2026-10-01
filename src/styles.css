@@ -777,6 +777,87 @@ td span {
 }
 
 /* =========================================================
+   MEMORY → DECISION TRACE
+   ========================================================= */
+
+.decision-trace {
+  margin-top: 19px;
+  border-color: #40386a;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(139, 122, 242, .07), transparent 30%),
+    #0f1621;
+}
+
+.trace-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.trace-step {
+  display: flex;
+  gap: 12px;
+  min-height: 125px;
+  padding: 15px;
+  border: 1px solid #273448;
+  border-radius: 9px;
+  background: #0b121d;
+}
+
+.trace-step.complete {
+  border-color: #514789;
+  background: linear-gradient(135deg, #121329, #0b121d);
+}
+
+.trace-index {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #282347;
+  color: #b9afff;
+  font: 10px 'DM Mono';
+}
+
+.trace-step small {
+  display: block;
+  color: #8278b8;
+  font: 9px 'DM Mono';
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+
+.trace-step strong {
+  display: block;
+  color: #e4e9f3;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.trace-step p {
+  margin: 7px 0 0;
+  color: #8492a8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.trace-rule {
+  margin-top: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ba7ba;
+  font-size: 11px;
+}
+
+.trace-rule svg {
+  color: #a99df8;
+  flex: 0 0 auto;
+}
+
+/* =========================================================
    HINDSIGHT MEMORY SECTION
    THIS IS THE VISUAL HERO
    ========================================================= */
