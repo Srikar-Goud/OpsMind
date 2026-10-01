@@ -1185,6 +1185,12 @@ function Investigation({
         </div>
       </section>
 
+      <DecisionTrace
+        analysis={analysis}
+        memory={memory}
+        reflection={reflection}
+      />
+
       <section className="memory-evidence">
         <div className="memory-head">
           <div>
@@ -1350,6 +1356,62 @@ function Investigation({
         </div>
       </section>
     </>
+  );
+}
+
+function DecisionTrace({
+  analysis,
+  memory,
+  reflection
+}) {
+  const memoryCount = memory?.count || 0;
+  const hasReflection = Boolean(reflection?.text);
+  const hasDecision = Boolean(analysis?.recommendedAction);
+
+  return (
+    <section className="decision-trace panel">
+      <div className="panel-title">
+        <div>
+          <p className="eyebrow">MEMORY → DECISION TRACE</p>
+          <h2>How previous experience changed this investigation</h2>
+        </div>
+        <Pill tone="violet">Traceable reasoning</Pill>
+      </div>
+
+      <div className="trace-grid">
+        <article className="trace-step">
+          <span className="trace-index">01</span>
+          <div>
+            <small>HINDSIGHT RECALL</small>
+            <strong>{memoryCount} historical {memoryCount === 1 ? 'experience' : 'experiences'} returned</strong>
+            <p>Relevant resolved incidents become evidence for the current investigation.</p>
+          </div>
+        </article>
+
+        <article className={hasReflection ? 'trace-step complete' : 'trace-step'}>
+          <span className="trace-index">02</span>
+          <div>
+            <small>HINDSIGHT REFLECTION</small>
+            <strong>{hasReflection ? 'Historical patterns synthesized' : 'Waiting for reflection'}</strong>
+            <p>{hasReflection ? 'Hindsight connected the recalled experience to the current incident.' : 'Run an investigation with live Hindsight memory enabled.'}</p>
+          </div>
+        </article>
+
+        <article className={hasDecision ? 'trace-step complete' : 'trace-step'}>
+          <span className="trace-index">03</span>
+          <div>
+            <small>AI INVESTIGATION</small>
+            <strong>{hasDecision ? 'Recommendation shaped by evidence' : 'Waiting for investigation'}</strong>
+            <p>{hasDecision ? analysis.recommendedAction : 'The model will use current signals plus historical evidence, not memory alone.'}</p>
+          </div>
+        </article>
+      </div>
+
+      <div className="trace-rule">
+        <BrainCircuit size={16} />
+        <span>Memory is evidence, not automatic remediation. The current incident still has to be verified.</span>
+      </div>
+    </section>
   );
 }
 
